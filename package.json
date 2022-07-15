@@ -1,5 +1,5 @@
 {
-  "name": "heima",
+  "name": "heima1",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -33,7 +33,10 @@
     "less": "^4.0.0",
     "less-loader": "^8.0.0",
     "lint-staged": "^11.1.2",
-    "postcss-pxtorem": "^5.1.1",
+    "postcss-pxtorem": "5.1.1",
     "vue-template-compiler": "^2.6.14"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
   }
 }
