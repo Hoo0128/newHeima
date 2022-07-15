@@ -1,18 +1,18 @@
 <template>
   <div>
-    <van-nav-bar class="navbar" title="登录" @click-left="onClickLeft">
-      <template #left> <van-icon name="cross" /> </template>
+    <van-nav-bar class="navbar" title="账号登录" @click-left="onClickLeft">
+      <template #left> <van-icon name="arrow-left" />  </template>
     </van-nav-bar>
 
     <van-form @submit="onSubmit">
       <van-field
         v-model="mobile"
         name="mobile"
-        placeholder="请输入手机号"
-        :rules="[{ required: true, message: '请输入手机号' }]"
+        placeholder="请输入账号"
+        :rules="[{ required: true, message: '请输入账号' }]"
       >
         <template #label>
-          <span class="toutiao toutiao-shouji"></span>
+          <span></span>
         </template>
       </van-field>
 
@@ -20,22 +20,23 @@
         v-model="code"
         type="password"
         name="code"
-        placeholder="请输入验证码"
-        :rules="[{ required: true, message: '请输入验证码' }]"
+        placeholder="请输入密码"
+        :rules="[{ required: true, message: '请输密码' }]"
       >
         <template #label>
-          <span class="toutiao toutiao-yanzhengma"></span>
+          <span></span>
         </template>
 
-        <template #right-icon>
-          <van-button class="code-btn" size="mini" round>发送验证码</van-button>
-        </template>
       </van-field>
 
       <div style="margin: 16px">
         <van-button block type="info" native-type="submit">登录</van-button>
       </div>
     </van-form>
+
+    <div class="zc">
+      <a>还没有账号，去注册~</a>
+    </div>
   </div>
 </template>
 
@@ -62,7 +63,7 @@ export default {
 
 <style lang="less" scoped>
 .navbar {
-  background: #3296fa;
+  background: #1cb676;
   :deep(.van-nav-bar__title) {
     color: #fff;
   }
@@ -85,6 +86,16 @@ export default {
 .code-btn {
   background-color: #eee;
   padding: 0 10px;
+  color: #666;
+}
+.van-button--info{
+  background-color:#1cb676;
+}
+
+.zc {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 25px;
   color: #666;
 }
 </style>
