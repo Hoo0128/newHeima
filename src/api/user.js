@@ -1,4 +1,5 @@
 import request from '@/utils/request.js'
+import store from '@/store'
 /**
  *
  * @param {String} mobile
@@ -19,5 +20,17 @@ export const login = (mobile, code) => {
 export const sendCode = (mobile) => {
   return request({
     url: `/v1_0/sms/codes/${mobile}`
+  })
+}
+
+/**
+ * @retyrns Promise
+ */
+export const getUserInfo = () => {
+  return request({
+    url: '/v1_0/user',
+    headers: {
+      Authorization: `Bearer ${store.state.user.token}`
+    }
   })
 }

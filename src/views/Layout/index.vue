@@ -23,7 +23,7 @@
       <van-tabbar-item to="/profile">
         <template #icon>
           <i class="toutiao toutiao-wode"></i>
-          <span class="text">我的</span>
+          <span class="text">{{$store.state.user.token?'我的':'未登录'}}</span>
         </template>
       </van-tabbar-item>
     </van-tabbar>
