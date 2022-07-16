@@ -12,10 +12,10 @@
                 round
                 width="1.76rem"
                 height="1.76rem"
-                src="https://img01.yzcdn.cn/vant/cat.jpeg"
+                :src="userInfo.photo"
               />
               <!-- 手机号 -->
-              <span class="mobile">15888888888</span>
+              <span class="mobile">{{ userInfo.name }}</span>
             </van-row>
           </van-col>
           <van-col span="11">
@@ -28,16 +28,16 @@
         <van-row
           ><van-grid class="grid" :border="false">
             <van-grid-item text="头条">
-              <template #icon> 0 </template>
+              <template #icon> {{ userInfo.art_count }} </template>
             </van-grid-item>
             <van-grid-item text="粉丝">
-              <template #icon> 0 </template>
+              <template #icon> {{ userInfo.fans_count }} </template>
             </van-grid-item>
             <van-grid-item text="关注">
-              <template #icon> 0 </template>
+              <template #icon>{{ userInfo.follow_count }} </template>
             </van-grid-item>
             <van-grid-item text="获赞">
-              <template #icon> 0 </template>
+              <template #icon> {{ userInfo.like_count }} </template>
             </van-grid-item>
           </van-grid></van-row
         >
@@ -80,7 +80,13 @@
 
 <script>
 import { getUserInfo } from '@/api'
+
 export default {
+  data () {
+    return {
+      userInfo: {}
+    }
+  },
   computed: {
     isLogin () {
       return !!this.$store.state.user.token
@@ -106,8 +112,16 @@ export default {
       this.$router.push('/login')
     },
     async getUserInfo () {
-      const res = await getUserInfo()
-      console.log(res)
+      if (this.isLogin) {
+        try {
+          const {
+            data: { data }
+          } = await getUserInfo()
+          this.userInfo = data
+        } catch (error) {
+          this.$toast.fail('请重新登录')
+        }
+      }
     }
   }
 }
