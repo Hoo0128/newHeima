@@ -8,7 +8,7 @@ export const getMyChannels = () => {
   return request({
     url: '/v1_0/user/channels'
   })
-}
+} 
 
 /**
  * 获取所有频道列表
