@@ -1,5 +1,5 @@
 <template>
-  <div>首页</div>
+  <div>搜索历史</div>
 </template>
 
 <script>

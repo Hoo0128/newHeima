@@ -1,16 +1,40 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import login from '@/views/Login'
+// import Login from '@/views/Login'
 Vue.use(VueRouter)
-
+// 路由页面的懒加载
+//  - 需要哪个页面, 再去请求那个页面
 const routes = [
-  // {
-  //   path: '/',
-  //   redirect: '/login'
-  // },
   {
     path: '/login',
-    component: login
+    component: () => import('@/views/Login')
+  },
+  {
+    path: '/',
+    component: () => import('@/views/Layout'),
+    redirect: '/ ',
+    children: [
+      {
+        path: '/ ',
+        component: () => import('@/views/Home')
+      },
+      {
+        path: '/video',
+        component: () => import('@/views/Video')
+      },
+      {
+        path: '/qa',
+        component: () => import('@/views/QA')
+      },
+      {
+        path: '/profile',
+        component: () => import('@/views/My')
+      }
+    ]
+  },
+  {
+    path: '/search',
+    component: () => import('@/views/Search')
   }
 ]
 
