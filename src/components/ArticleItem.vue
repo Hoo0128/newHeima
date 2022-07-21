@@ -1,13 +1,10 @@
 <template>
   <div>
-    <!-- 渲染无图片 -->
     <van-cell
       v-if="articleInfo.cover.type === 0"
       :title="articleInfo.title"
       :label="articleDesc"
     />
-
-    <!-- 渲染一张图片 -->
     <van-cell
       v-if="articleInfo.cover.type === 1"
       :title="articleInfo.title"
@@ -19,11 +16,8 @@
         :src="articleInfo.cover.images[0]"
       />
     </van-cell>
-
-    <!-- 渲染三张图片 -->
     <van-cell v-if="articleInfo.cover.type === 3" :title="articleInfo.title">
       <template #label>
-        <!-- 图片 -->
         <div>
           <van-image
             v-for="(item, index) in articleInfo.cover.images"
@@ -33,7 +27,6 @@
             :src="item"
           />
         </div>
-        <!-- 文章描述 -->
         <span>{{ articleDesc }}</span>
       </template>
     </van-cell>
@@ -41,7 +34,6 @@
 </template>
 
 <script>
-// 引入utils
 import dayjs from '@/utils/dayjs'
 export default {
   props: {
@@ -51,15 +43,13 @@ export default {
     }
   },
   computed: {
-    // 文章的描述
     articleDesc () {
       const art = this.articleInfo
-      const relativeTime = dayjs(art.pubdate).fromNow()
-
-      return `${art.aut_name} ${art.comm_count}评论 ${relativeTime}`
+      const time = dayjs(art.pubdate).fromNow()
+      return `${art.aut_name} ${art.comm_count}评论 ${time}`
     }
   }
 }
 </script>
 
-<style></style>
+<style lang="less" scoped></style>

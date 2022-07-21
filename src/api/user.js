@@ -1,8 +1,9 @@
-import request from '@/utils/request'
+import request from '@/utils/request.js'
+
 /**
- * 登录
- * @param {String} mobile 手机号
- * @param {String} code 验证码
+ *
+ * @param {String} mobile
+ * @param {String} code
  * @returns Promise
  */
 export const login = (mobile, code) => {
@@ -12,10 +13,8 @@ export const login = (mobile, code) => {
     data: { mobile, code }
   })
 }
-
 /**
- * 发送验证码
- * @param {String} mobile 手机号
+ * @param{String} mobile
  * @returns Promise
  */
 export const sendCode = (mobile) => {
@@ -23,14 +22,14 @@ export const sendCode = (mobile) => {
     url: `/v1_0/sms/codes/${mobile}`
   })
 }
-
-/**
- * 请求用户自己的信息
- * @returns Promise
- */
 export const getUserInfo = () => {
-  // url methods headers
   return request({
     url: '/v1_0/user'
+  })
+}
+export const delMyChannel = (target) => {
+  return request({
+    url: `v1_0/user/channels/${target}`,
+    method: 'DELETE'
   })
 }
